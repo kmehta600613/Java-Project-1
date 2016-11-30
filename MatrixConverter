@@ -54,23 +54,35 @@ class MatrixConverter {
 		  public static Matrix convert (Matrix input) {
 			  int newRows = input.getRowsNum();
 			  int newColumns = input.getColumnsNum();
-			  int counter = newRows/2;  
-			  int counter1 = newColumns/2; 
+			  int counter = newRows/2; // This tells you the number of even indices there are so that you know where to start putting the rows with odd indices.
+			  int counter1 = newColumns/2; // This follows the same logic as above.
 			  Matrix step1 = new Matrix(newRows, newColumns);
 			  for (int i = 0; i < newRows; i++) {
 				  for (int j = 0; j < newColumns; j++) {
 					  int element = input.getElement(i, j);
 					  if (i%2 == 0 && step1.inBounds(i/2, j)) {
 						  step1.setElement(i/2, j, element);
+						 //In order to put rows with even indices on top, every even index is divided by 2. E.g 2nd index becomes the 1st index, 4th index becomes the 2nd index, etc.
 					  }else if (i == 0) {
-						  step1.setElement(i, j, element); 
+						  step1.setElement(i, j, element); //This is to ensure that the first row remains where it is.
 			
 					  }
 					 for (int n = 0; n < counter; n++){
 						 if (i == (newRows - 1) && i%2 != 0){
 							 step1.setElement(i, j, element);
+							 /*
+							  The step above is to ensure that if the last index is odd, then it remains where it is.
+							  */
 						 }else if (i%2 != 0 && step1.inBounds(i + counter - n, j)){
 							 step1.setElement(i + counter - n, j, element);
+							 /*
+							  Counter tells the program where to start placing the rows with odd indices and 'n' ensures
+							  that each row with an odd index is placed one below another. For example, if there are 4
+							  indices, then that means there are 2 even indices (this is the value of counter). So the 
+							  rows with odd indices have to be placed starting from the 3rd index. This means the 
+							  row with the 1st index gets moved to the 3rd( 1(i) + 2(counter) - 0(n) = 3), and the 3rd 
+							  gets moved to the 4th (3(i) + 2(counter) - 1(n) = 4). This completes the first step.
+							  */
 						 }
 					 }
 					 
@@ -84,12 +96,20 @@ class MatrixConverter {
 					int element = step1.getElement(m, n);
 					if (n%2 == 0 && step2.inBounds(m, n/2)) {
 						  step2.setElement(m, n/2, element);
+						 //The columns even indices are pushed to the left the same way the rows with even indices are pushed up. 
 					  }
 					 for (int l = 0; l < counter1; l++){
 						 if (n == (newColumns1 - 1) && n%2 != 0){
 							 step2.setElement(m, n, element); 
+							 /*
+							  This step is to ensure that if the last column index is odd, it remains where it is.
+							  */
 						 }else if (n%2 != 0 && step2.inBounds(m, n + counter1 - l)){
 							 step2.setElement(m, n + counter1 - l, element);
+							 /*
+							 The columns with the odd indices are pushed to the right the same way the rows with odd
+							 indices are pushed down. Look above for a more detailed explanation.
+							  */
 						 }
 				}
 			}
