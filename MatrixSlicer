@@ -72,10 +72,12 @@ class MatrixSlicer {
 
 	  public static int[] getRow(Matrix matrix, int row) {
 		  int matrixColumns = matrix.getColumnsNum();
-		  int[] rowIndex = new int[matrixColumns]; 
+		  int[] rowIndex = new int[matrixColumns]; //An array is created that is the size of the number of columns in the matrix.
 		  for (int j = 0; j < matrixColumns; j++){
 			  rowIndex[j] = matrix.getElement(row, j);
-
+			  /*
+			   The for loop replaces each element in the array with the elements of the specified row in the matrix.
+			   */
 		  }
 		  
 	    return rowIndex;
@@ -123,13 +125,25 @@ class MatrixSlicer {
 			  for (int m = 0; m < matrixColumns; m++){
 				  if (matrix.inBounds(row - column + i, 0 + m)){ 
 					  count++;
+					  /*
+					   'row - column' gives you the first element of the diagonal array. From there, the for loop
+					   increments count by the number of columns as it keeps going down diagonally in the matrix 
+					   until it is out of bounds.This helps to determine the size of the array.
+					   */
 				  }
 			  }
 		  }
 		  int[] diagonalIndex = new int[count/matrixColumns]; 
+		  /*
+		  A new array is created and the size is determined by 'count/matrixColumns' so that we know exactly how many
+		  elements are in the array.
+		  */
 		  for (int j = 0; j < matrixRows && matrix.inBounds(row - column + j, 0 + j); j++) {
 				  diagonalIndex[j] = matrix.getElement(row - column + j, 0 + j);
-	
+				  /*
+				  Like getRow and getColumn, each element in the array is replaced by elements going down diagonally,
+				  starting from the first element 'row - column'.
+				   */
 			  }
 			  
 		  return diagonalIndex;
