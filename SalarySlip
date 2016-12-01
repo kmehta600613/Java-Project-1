@@ -1,5 +1,5 @@
 /*
- The program needs to calculates the salary based on the data given by the user. The slip will include the number of units sold and 
+ The program should calculate the salary based on the data given by the user. The slip should include the number of units sold and 
  the unit price of each product sold.
  */
 
