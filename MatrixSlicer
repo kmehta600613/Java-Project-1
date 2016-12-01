@@ -1,8 +1,8 @@
 /*
 
-This program prompts the user for the number of rows and columns, creates a matrix, and prompts the user again for
-a row and column index. It then outputs the elements in the row and column at the indices entered and it also outputs
-the element that are in a diagonal and consists of the element at that row and column index.
+This program should prompt the user for the number of rows and columns, create a matrix, and prompt the user again for
+a row and column index. It then should output the elements in the row and column at the indices entered and it should also output
+the elements that are in a diagonal that consists of the element at that row and column index.
 
  */
 
