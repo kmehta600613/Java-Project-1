@@ -1,8 +1,8 @@
 /*
  
- This program asks the user to enter 2 single-digit numbers and an operator, calculates the result of the operation, outputs the 
- description of the operation in plain English as well as the numeric result, and then provides the user an option to restart. 
- The user is notified if the number or operation is invalid. Also, any attempts of dividing by 0 results in the program printing 
+ This program should ask the user to enter 2 single-digit numbers and an operator, calculate the result of the operation, output the 
+ description of the operation in plain English as well as the numeric result, and then provide the user with an option to restart. 
+ The user should be notified if the number or operation is invalid. Also, any attempts of dividing by 0 should result in the program printing 
  "Division by 0 not allowed".
  
  */
