@@ -1,17 +1,12 @@
+/*
+
+This program should convert the matrix input by pushing even-indexed rows and columns up / left, and odd-indexed ones down / right.
+
+*/
 import java.util.Scanner;
 
 
 class MatrixConverter {
-	
-	/*
-	   * =========================================================================
-	   *  Method convert(): converts matrix input by pushing even-indexed rows 
-	   *    and columns up / left, odd-indexed ones down / right.
-	   *
-	   *  Input  : Matrix input -- the matrix to be converted
-	   *  Output : Matrix -- the converted matrix
-	   * =========================================================================
-	   */
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
