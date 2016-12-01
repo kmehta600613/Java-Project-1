@@ -1,7 +1,7 @@
 /*
- This program asks the user for a positive integer less than or equal to 100, and then performs a range check where the number must 
- be between 0 and 100. If the input passes the check, then the program uses it as the first element of the sequence, computes and 
- outputs the sequence as per the formulas, until the last element precedes the element 1. The sequence generates the sequence in
+ This program should ask the user for a positive integer less than or equal to 100, and then perform a range check where the number must 
+ be between 0 and 100. If the input passes the check, then the program should use it as the first element of the sequence, compute and 
+ output the sequence as per the formulas, until the last element precedes the element 1. The program should generate the sequence in
  lines of 20 elements, wrapping odd integers in parentheses and even integers in square brackets.
  
  C(i+1) = Ci/2            if n = 0( i mod 2)
