@@ -1,0 +1,78 @@
+import java.util.Iterator;
+
+public class Deque<Item> implements Iterable<Item> {
+	
+	private int n;
+	private Node first;
+	private Node last;
+	
+	private class Node {
+		Item item;
+		Node next;
+		Node previous;
+
+	}
+
+	@Override
+	public Iterator<Item> iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public Deque() {
+		
+	}
+	
+	public boolean isEmpty() {
+		return first == null;
+	}
+	
+	public int size() {
+		return n;
+	}
+	
+	public void pushLeft(Item item){
+		Node newFirst = new Node();
+		newFirst.item = item;
+		if (first != null){
+			newFirst.next = first;
+			first.previous = newFirst;
+		}
+		first = newFirst;
+		if (last == null){
+			last = first;
+		}
+		n++;
+		
+	}
+	public void pushRight(Item item){
+		Node newLast = new Node();
+		newLast.item = item;
+		if (last != null){
+			newLast.previous = last;
+			last.next = newLast;
+		}
+		last = newLast;
+		if (first == null){
+			first = last;
+		}
+		n++;
+	}
+	
+	public Item popLeft(){
+		Node oldFirst = first;
+		first = first.next;
+		first.previous = null;
+		n--;
+		return oldFirst.item;
+	}
+	
+	public Item PopRight(){
+		Node oldLast = last;
+		last = last.previous;
+		last.next = null;
+		n--;
+		return oldLast.item;
+	}
+
+}
