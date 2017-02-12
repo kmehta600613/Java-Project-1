@@ -21,17 +21,20 @@ public class SequenceGenerator {
 		int number = keyboard.nextInt();	
 		
 		assert number > 0 && number < 101;
-		
-		int counter = 0; 
-		if (number%2 == 0) {  
+		/*
+		The assertion statement ensures that the input is between 0 and 100. If it is not, then the program outputs an error.
+		NOTE: In order for assertions to work, they must be enabled by configuring the settings of your IDE.
+		 */
+		int counter = 0; // A counter is added and initialized.
+		if (number%2 == 0) { // By calculating the modulus of the inputed number, we can tell whether the number is even or odd so we can add parentheses or square brackets accordingly . 
 			System.out.print("[" + number + "]");
-			counter++; 
+			counter++; // The counter variable adds 1 to itself every time a new element is printed. 
 		} else {
 			System.out.print("(" + number + ")");
 			counter++;
 		}
 		
-		while (number > 2) { 
+		while (number > 2) { // This ensures that the while loop terminates before reaching the element 1
 			if (number%2 == 0){
 				int evenNumber = number/2;
 				if (evenNumber%2 == 0) {
@@ -41,15 +44,19 @@ public class SequenceGenerator {
 					System.out.print("(" + evenNumber + ")");
 					counter++;
 				}
-				number = evenNumber;   
+				number = evenNumber; // This reassigns the new calculated even number to the variable number, and the loop is executed again with this new even number. 
 			} else {
 				System.out.print("[" + ((number * 6) + 2) + "]");
 				int oddNumber = ((number * 6) + 2);
-				number = oddNumber;  
+				number = oddNumber; // The same happens here as with evenNumber above, and loop continues like this until it reaches the element 2.
 				counter++;
 			} if (counter%20 == 0) {
 				System.out.printf("%n");
-				
+				/*
+				 This checks if the program has printed 20 elements by checking whether the modulus of the variable counter is 0.
+				 Remember that all the counter++ lines you see above means that counter is incrementing by 1 every time. If the modulus
+				 is 0, then a new line is printed.
+				 */
 			}
 		}
 	}
