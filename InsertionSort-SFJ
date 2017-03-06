@@ -1,0 +1,106 @@
+/*
+ * @author Kshitij Mehta
+ * 
+ * The following class performs an Insertion sort on an array of Job objects.
+ *  
+ */
+package sort;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Insertion {
+	/**
+	 * regular insertion sort
+	 * 
+	 * This method consists of an outer loop where i runs from 1 to the length of the input array, and an inner loop where j runs from i to 0.
+	 * At each iteration, the Job at index j is compared to the Job before j and if it is less, then the two jobs swap places. This continues until
+	 * all the Jobs in the array are sorted.
+	 * @param x
+	 *            - the input array containing processing times of jobs that
+	 *            need to be sorted.
+	 */
+	public static void sortInsert(Job[] x) {
+		Job tempVar;
+		for (int i = 1; i < x.length; i++) {
+			for (int j = i; j > 0; j--) {
+				if (x[j].compareTo(x[j-1]) == -1) {
+					tempVar = x[j];
+					x[j] = x[j - 1];
+					x[j - 1] = tempVar;
+				}
+			}
+		}
+		
+	}
+
+	/**
+	 * insertion sort using Comparable
+	 * 
+	 * This method uses Comparables to sort an array of Comparables. It has the same loop structure as before except now we use a private method
+	 * exch() to swap Jobs if the "if statement" evaluates to true. Since the array is of type Comparable, it is necessary to cast each item in the
+	 * array as a Job object. 
+	 * @param x
+	 *            - the input array containing times of jobs that need to be
+	 *            sorted.
+	 * @param n
+	 *            - the size of the input array
+	 */
+	public static void sortComparable(Comparable[] x, int n) {
+		for (int i = 1; i < n; i++) {
+			for (int j = i; j > 0; j--) {
+				if (((Job) x[j - 1]).compareTo((Job) x[j]) == 1) {
+					exch(x, j - 1, j);
+				}
+			}
+		}
+	}
+
+	/*
+	 * Please note: Used algorithm from page 245 in textbook.
+	 * @param x An array of Comparable objects 
+	 * @param i An integer that will be used as an index of the array
+	 * @param j Another integer that will be used as an index of the array. 
+	 */
+	private static void exch(Comparable[] x, int i, int j) {
+		Job a = (Job) x[i];
+		x[i] = (Job) x[j];
+		x[j] = a;
+	}
+
+	/**
+	 * optimized insertion sort
+	 * 
+	 * This method uses Binary search along with Insertion sort to optimize the runtime of the algorithm. Binary search works by comparing an item
+	 * with the item in the middle. If it is less, then it compares the item with the item in the middle of the left half and does the same with 
+	 * the right half if it is bigger. We can use this logic to compare Jobs and follow the Insertion sort structure to efficiently sort the 
+	 * objects in the array.
+	 * @param x
+	 *            - the input array containing times of jobs that need to be
+	 *            sorted.
+	 * @param n
+	 *            - the size of the input array
+	 * Please note: Used BinarySearch from page 9 in textbook.          
+	 */
+	public static void sortBinary(Comparable[] x, int n) {
+		for (int i = 0; i < n; ++i) {
+			Job tempVar = (Job)x[i];
+			int lo = 0;
+			int hi = i;
+			while (lo < hi) {
+				int mid = (lo + hi) / 2;
+				if (tempVar.compareTo((Job)x[mid]) == 1) {
+					lo = mid + 1;
+				} else if(tempVar.compareTo((Job)x[mid]) == -1){
+					hi = mid;
+				} else {
+					hi = mid;
+				}
+			}
+			for (int j = i; j > lo; --j) {
+				exch(x, j - 1, j);
+			}
+		}
+	}
+}
