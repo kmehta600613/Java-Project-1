@@ -1,0 +1,71 @@
+/*
+ * @author Kshitij Mehta
+ * 
+ * The following class performs a Merge sort on an array of Job objects.
+ *  
+ */
+package sort;
+
+public class Heap {
+
+	private static String[] jobVals6;
+
+	/**
+	 * heap sort using Comparable
+	 * 
+	 * This method constructs and sorts a heap by repeatedly using the sink() method. The for loop creates the heap and then the while loop exchanges the largest element with the
+	 * last element, uses the sink() operation and keeps going until the heap is sorted.
+	 * 
+	 * @param x
+	 *            - the input array containing times of jobs that need to be
+	 *            sorted.
+	 * @param n
+	 *            - the size of the input array
+	 *  
+	 * Please note: Used page 324 from the textbook.
+	 */
+	public static void sortHeap(Comparable[] x, int n) {
+		for (int k = n / 2; k >= 1; k--)
+			sink(x, k, n);
+		while (n > 1) {
+			exch(x, 1, n--);
+			sink(x, 1, n);
+		}
+	}
+	
+	/*
+	 * This method follows the same logic as the other exch() methods.
+	 * @param x The input array containing Jobs
+	 * @param i An index of the array
+	 * @param j Another index of the array.
+	 */
+
+	private static void exch(Comparable[] x, int i, int j) {
+		Job a = (Job) x[i - 1];
+		x[i - 1] = (Job) x[j - 1];
+		x[j - 1] = a;
+	}
+	
+	/*
+	 * The sink method compares the Job on a node with the Job on its parent node (i.w. the Job before this one) and if its larger, then it swaps places and compares itself with 
+	 * the next item. It continues on like this until all the Jobs are in their right place.
+	 * @param p An input array of Jobs
+	 * @param k The index or the node in the heap
+	 * @param n Another index or node in the heap
+	 */
+
+	private static void sink(Comparable[] p, int k, int n) {
+		while (2 * k <= n) {
+			int j = 2 * k;
+			if (j < n && ((Job) p[j - 1]).compareTo((Job) p[j]) == -1) {
+				j++;
+			}
+			if (((Job) p[k - 1]).compareTo((Job) p[j - 1]) != -1) {
+				break;
+			}
+			exch(p, k, j);
+			k = j;
+		}
+	}		
+
+}
