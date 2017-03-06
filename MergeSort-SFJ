@@ -1,0 +1,60 @@
+/*
+ * @author Kshitij Mehta
+ * 
+ * The following class performs a Merge sort on an array of Job objects.
+ *  
+ */
+
+package sort;
+
+public class Merge {
+	/**
+	 * 
+	 * This method follows the bottom-up merge sort algorithm. It starts of be splitting into subarrays of 2, sorts and merges the subarrays into a new subarray of 4, and it 
+	 * continues on until all the whole array is sorted and merged together.
+	 * merge sort using Comparable
+	 * @param x - the input array containing times of jobs that need to be sorted.
+	 * @param n - the size of the input array
+	 * 
+	 * Please note: Used pages 271 and 278 from the textbook.
+	 */
+	public static void sortMerge ( Comparable[] x, int n ) {
+		Job[] tempArr = new Job[n];
+		for (int l = 1; l < n; l *= 2) {
+            for (int lo = 0; lo < n-l; lo += l+l) {
+                int mid  = lo+l-1;
+                int hi = Math.min(lo+l+l-1, n-1);
+                merge(x, tempArr, lo, mid, hi);
+            }
+        }
+	}
+	
+	/*
+	 * This private method copies the items in the original array into a temporary array and compares each item in the array, and then merges back to the original array.
+	 * @param x The original array of Jobs
+	 * @param tempArr A temporay array of the same size as the original
+	 * @param lo The lowest index of the array
+	 * @param mid The middle index
+	 * @param hi The highest index
+	 */
+	
+	private static void merge(Comparable[] x, Job[] tempArr, int lo, int mid, int hi){
+		int i = lo;
+		int j = mid + 1;
+		for (int k = lo; k <= hi; k++){
+			tempArr[k] = (Job)x[k];	
+		}
+		for(int k = lo; k <= hi; k++){
+			if (i > mid){
+				x[k] = tempArr[j++];
+			} else if (j > hi){
+				x[k] = tempArr[i++];
+			} else if (tempArr[j].compareTo(tempArr[i]) == -1){
+				x[k] = tempArr[j++];
+			} else {
+				x[k] = tempArr[i++];
+			}
+		}
+	}
+	
+}
